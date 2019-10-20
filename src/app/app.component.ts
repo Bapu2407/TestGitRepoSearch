@@ -41,8 +41,9 @@ export class AppComponent {
   
 
   searchRepo(name:any) {
-     this.httpClient.get('https://api.github.com/search/repositories?q='+name.searchText).subscribe(
+     this.httpClient.get('https://api.github.com/search/repositories?q='+name.searchText+"&per_page=1000").subscribe(
       response => {
+        this.full_name = [];
         this.totalRepoCount= response['total_count'];
         if(response['items'].length>0)
         {
