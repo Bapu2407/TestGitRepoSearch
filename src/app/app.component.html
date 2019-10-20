@@ -1,0 +1,71 @@
+<!-- <ng-template #rt let-r="result" let-t="term">
+    <a [href]="r['html_url']" target="_blank">{{r.name}}</a>
+    <br>
+    <span>{{r.description}}</span> 
+    <br>
+  <img [src]="r['avatar']" class="mr-1" style="width: 16px">
+
+ 
+  
+</ng-template>
+
+        <div class="form-group col-md-4">
+          <label for="typeahead-http">Search Movies By Name:</label>
+          <input id="typeahead-template" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" [resultTemplate]="rt"
+           />
+        </div> -->
+        <form class="form-horizontal" #GitForm="ngForm" id="GitForm">
+          <div class="container">
+          <div class="row" style="margin-top: 10px;">
+            <label class="col-md-2">Search Repository</label>
+            <div class="input-group col-md-4">
+                <input type="text" class="form-control" [(ngModel)]="model" placeholder="Search Repository" name="searchText">
+                <div class="input-group-append">
+                  <button class="btn btn-secondary" type="button" (click)="searchRepo(GitForm.value)">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="container">
+          <div class="row">
+              <div class="px-2">
+                  <div class="flex-justify-between border-bottom pb-3 position-relative" 
+                  >
+                    <h3 [hidden]="isClick" style="margin-top: 10px; margin-left: 52px;border-bottom: 1px solid;" >
+                    {{totalRepoCount}} repository results
+                </h3>
+            <ul>
+                  <li class="repo-list-item d-flex flex-column flex-md-row flex-justify-start py-4 public source" style="border-bottom:1px solid black" *ngFor="let item of full_name">
+                      <div class="col-12 col-md-8 pr-md-3">
+                        <h3>
+                          <a class="asd"[href]='item.html_url' target="_blank">{{item.name}}</a>
+                        </h3>
+                    
+                          <p class="col-12 col-md-9 d-inline-block text-gray mb-2 pr-4">
+                            {{item.description}}
+                          </p>
+                            <p class="f6 text-gray mr-3 mb-0 mt-2">
+                                <img [src]="item.avatar" class="mr-1" style="width: 16px"><span>{{item.owner}}</span>
+                            </p>
+                            <p class="f6 text-gray mr-3 mb-0 mt-2">
+                              Updated at {{item.updated | date:"HH mm"}},{{item.updated | date:"dd MMM yyyy"}}
+                            </p>
+                    
+                      </div>
+                      <div class="flex-shrink-0 col-6 col-md-4 pt-2 pr-md-3 d-flex">
+                          <div class="pl-2 pl-md-0 text-right flex-auto min-width-0">
+                            <p>
+                              <svg aria-label="star" class="octicon octicon-star" viewBox="0 0 14 16" version="1.1" width="14" height="16" role="img"><path fill-rule="evenodd" d="M14 6l-4.9-.64L7 1 4.9 5.36 0 6l3.6 3.26L2.67 14 7 11.67 11.33 14l-.93-4.74L14 6z"></path></svg>
+                              {{item.starCount}}
+                            </p>
+                          </div>
+                      </div>
+              </li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        
